@@ -68,6 +68,7 @@ export function ProductoFormPage({ modo }: { modo: 'crear' | 'editar' | 'vendedo
   return (
     <form className="tarjeta formulario" onSubmit={(evento) => void guardar(evento)}>
       <Link to={volver}>Volver</Link>
+      <p className="sobre">{modo === 'vendedor' ? 'Vendedor' : 'Administración'}</p>
       <h1>{modo === 'crear' ? 'Nuevo producto' : 'Editar producto'}</h1>
       {error && <p className="error">{error}</p>}
       <label>

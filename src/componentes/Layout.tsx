@@ -1,6 +1,7 @@
 import { Link, Navigate, Outlet } from 'react-router-dom';
 import { inicioDe, useSesion } from '../sesion-estado';
 import type { Rol } from '../tipos';
+import { CarritoFlotanteProvider } from './CarritoFlotante';
 
 export function RutaPrivada({ roles }: { roles: Rol[] }) {
   const { sesion } = useSesion();
@@ -20,16 +21,12 @@ export function Layout() {
   }
 
   return (
+    <CarritoFlotanteProvider>
     <div className="app">
       <header className="barra">
         <Link to={inicioDe(sesion.rol)} className="marca">Mercadito Cloud</Link>
         <nav>
-          {sesion.rol === 'CLIENTE' && (
-            <>
-              <Link to="/catalogo">Catálogo</Link>
-              <Link to="/carrito">Carrito</Link>
-            </>
-          )}
+          {sesion.rol === 'CLIENTE' && <Link to="/catalogo">Catálogo</Link>}
           {sesion.rol === 'VENDEDOR' && <Link to="/vendedor/productos">Productos</Link>}
           {sesion.rol === 'ADMIN' && (
             <>
@@ -48,6 +45,7 @@ export function Layout() {
         <Outlet />
       </main>
     </div>
+    </CarritoFlotanteProvider>
   );
 }
 

@@ -59,15 +59,15 @@ export function CarritoPage() {
         <strong>{dinero(carrito.total)}</strong>
       </div>
       {error && <p className="error">{error}</p>}
-      {carrito.items.length === 0 && <p>El carrito está vacío.</p>}
+      {carrito.items.length === 0 && <p className="tarjeta vacio">El carrito está vacío.</p>}
       <div className="lista">
         {carrito.items.map((item) => (
-          <article key={item.id} className="tarjeta fila">
+          <article key={item.id} className="tarjeta fila-carrito">
             <div>
               <h2>{item.nombre || `Producto ${item.productoId}`}</h2>
-              <p>{dinero(item.precioUnitario)} c/u</p>
+              <p className="suave">{dinero(item.precioUnitario)} c/u</p>
             </div>
-            <label>
+            <label className="cantidad">
               Cantidad
               <input
                 type="number"
@@ -82,7 +82,7 @@ export function CarritoPage() {
                 }}
               />
             </label>
-            <strong>{dinero(item.subtotal)}</strong>
+            <strong className="precio">{dinero(item.subtotal)}</strong>
             <button type="button" className="secundario" onClick={() => void quitar(item.productoId)}>Quitar</button>
           </article>
         ))}

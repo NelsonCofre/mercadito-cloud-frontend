@@ -59,6 +59,7 @@ export function CategoriasPage() {
         </div>
       </div>
       {error && <p className="error">{error}</p>}
+      <div className="dos-columnas">
       <form className="tarjeta formulario" onSubmit={(evento) => void guardar(evento)}>
         <h2>{formulario.id ? 'Editar categoría' : 'Nueva categoría'}</h2>
         <label>
@@ -85,11 +86,12 @@ export function CategoriasPage() {
       </form>
       <div className="lista">
         {categorias.map((categoria) => (
-          <article key={categoria.id} className="tarjeta fila">
+          <article key={categoria.id} className="tarjeta fila-par">
             <div>
               <h2>{categoria.nombre}</h2>
               <p>{categoria.descripcion || 'Sin descripción'}</p>
             </div>
+            <div className="acciones">
             <button type="button" className="secundario" onClick={() => setFormulario({
               id: categoria.id,
               nombre: categoria.nombre,
@@ -99,8 +101,10 @@ export function CategoriasPage() {
               Editar
             </button>
             <button type="button" className="secundario" onClick={() => void eliminar(categoria.id)}>Eliminar</button>
+            </div>
           </article>
         ))}
+      </div>
       </div>
     </section>
   );
